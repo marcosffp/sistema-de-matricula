@@ -33,3 +33,9 @@
 | 04   | Uma disciplina deve ter, no mínimo, 3 alunos. Caso contrário, a mesma é cancelada no semestre seguinte | 1 |
 | 05   | Uma disciplina deve ter, no máximo, 60 alunos. Caso contrário, as matrículas são encerradas para a mesma | 2 |
 | 06   | Cada usuário deve possuir uma senha para seu respectivo login | 2 |
+
+## Casos de Uso
+
+### Diagrama
+
+![UCM](./projeto/UseCaseDiagram.png)
