@@ -8,6 +8,7 @@
 | Aluno  |  Me matricular em disciplinas de meu curso  | Cursar durante o semestre |
 | Professor | Acessar o sistema de matrículas | Visualizar os alunos cadastrados em cada disciplina |
 | Usuário | Realizar login no sistema | Gerenciar meus dados |
+| Agente de Cobrança | Receber uma notificação a respeito da matrícula do aluno | Realizar as cobranças no decorrer do semestre |
 
 ## Requisitos
 
