@@ -16,9 +16,9 @@ public class Aluno extends Usuario {
   }
 
   @Override
-  public boolean temPermissao(String acao) {
-    return switch (acao) {
-      case "MATRICULAR_DISCIPLINA", "CANCELAR_MATRICULA", "VISUALIZAR_MATRICULAS" -> true;
+  public boolean temPermissao(Permissao permissao) {
+    return switch (permissao) {
+      case MATRICULAR_DISCIPLINA, CANCELAR_MATRICULA, VISUALIZAR_MATRICULAS -> true;
       default -> false;
     };
   }

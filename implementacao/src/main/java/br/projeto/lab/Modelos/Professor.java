@@ -14,9 +14,9 @@ public class Professor extends Usuario {
   }
 
   @Override
-  public boolean temPermissao(String acao) {
-    return switch (acao) {
-      case "VISUALIZAR_ALUNOS_DISCIPLINA", "CONSULTAR_MATRICULAS" -> true;
+  public boolean temPermissao(Permissao permissao) {
+    return switch (permissao) {
+      case GERENCIAR_DISCIPLINAS, VISUALIZAR_MATRICULAS -> true;
       default -> false;
     };
   }

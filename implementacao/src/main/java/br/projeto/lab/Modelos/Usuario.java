@@ -12,7 +12,7 @@ public abstract class Usuario {
 
     public Usuario(String identificador, String senha, String email, String nome) {
         this.identificador = identificador;
-        this.senhaHash = PasswordUtil.hashPassword(senha);
+        this.senhaHash = PasswordUtil.senhaHash(senha);
         this.email = email;
         this.nome = nome;
         this.ativo = true;
@@ -20,11 +20,11 @@ public abstract class Usuario {
 
     public String realizarLogin(String identificador, String senha) {
         if (this.identificador.equals(identificador) &&
-                PasswordUtil.verifyPassword(senha, this.senhaHash) &&
+                PasswordUtil.verificarSenha(senha, this.senhaHash) &&
                 this.ativo) {
 
-            SessionManager sessionManager = SessionManager.getInstance();
-            return sessionManager.createSession(
+            SessionManager sessionManager = SessionManager.getInstancia();
+            return sessionManager.criarSessao(
                     this.identificador,
                     this.getClass().getSimpleName());
         } else {
@@ -32,16 +32,16 @@ public abstract class Usuario {
         }
     }
 
-    public static boolean isAuthenticated(String sessionToken) {
-        return SessionManager.getInstance().isValidSession(sessionToken);
+    public static boolean autenticado(String sessionToken) {
+        return SessionManager.getInstancia().sessaoValida(sessionToken);
     }
 
     public static void logout(String sessionToken) {
-        SessionManager.getInstance().invalidateSession(sessionToken);
+        SessionManager.getInstancia().invalidarSessao(sessionToken);
     }
 
     // Método para verificar permissões baseado no tipo de usuário
-    public abstract boolean temPermissao(String acao);
+    public abstract boolean temPermissao(Permissao permissao);
 
     // Getters
     public String getIdentificador() {
