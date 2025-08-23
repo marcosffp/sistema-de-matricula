@@ -36,6 +36,12 @@
 
 ## Casos de Uso
 
-### Diagrama
+### Diagrama 
 
 ![UCM](./projeto/DiagramaCasosDeUso.jpg)
+
+## UML
+
+### Diagrama
+
+![Diagrama UML](./projeto/DiagramaUML.jpg)

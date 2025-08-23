@@ -6,13 +6,11 @@ import br.projeto.lab.Enums.Permissao;
 
 import java.util.ArrayList;
 
-public class Professor extends Usuario {
-  private String departamento;
+public class Professor extends Funcionario {
   private List<Disciplina> disciplinasLecionadas;
 
   public Professor(String identificador, String senha, String email, String nome, String departamento) {
-    super(identificador, senha, email, nome);
-    this.departamento = departamento;
+    super(identificador, senha, email, nome, departamento);
     this.disciplinasLecionadas = new ArrayList<>();
   }
 
@@ -22,11 +20,6 @@ public class Professor extends Usuario {
       case GERENCIAR_DISCIPLINAS, VISUALIZAR_MATRICULAS -> true;
       default -> false;
     };
-  }
-
-  // Getters e setters
-  public String getDepartamento() {
-    return departamento;
   }
 
   public List<Aluno> getAlunosPorDisciplina(Disciplina disciplina) {

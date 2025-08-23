@@ -5,15 +5,15 @@ import java.util.List;
 
 import br.projeto.lab.Enums.Permissao;
 
-public class Secretario extends Usuario {
+public class Secretario extends Funcionario {
 
   private List<Aluno> alunosGerenciados;
   private List<Disciplina> disciplinasGerenciadas;
   private List<Professor> professoresGerenciados;
   private List<String> cursosGerenciados;
 
-  public Secretario(String identificador, String senha, String email, String nome) {
-    super(identificador, senha, email, nome);
+  public Secretario(String identificador, String senha, String email, String nome, String departamento) {
+    super(identificador, senha, email, nome, departamento);
     this.alunosGerenciados = new ArrayList<>();
     this.disciplinasGerenciadas = new ArrayList<>();
     this.professoresGerenciados = new ArrayList<>();
