@@ -1,5 +1,7 @@
 package br.projeto.lab.Modelos;
 
+import br.projeto.lab.Enums.Permissao;
+
 public class Secretaria extends Usuario {
 
   public Secretaria(String identificador, String senha, String email, String nome) {

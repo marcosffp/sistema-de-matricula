@@ -1,18 +1,18 @@
 package br.projeto.lab.Modelos;
 
 import java.util.List;
-import java.util.ArrayList;
+
+import br.projeto.lab.Enums.Permissao;
 
 public class Aluno extends Usuario {
   private String curso;
-  private List<String> disciplinasMatriculadas;
   private int semestreAtual;
+  private Matricula matricula;
 
-  public Aluno(String identificador, String senha, String email, String nome, String curso) {
+  public Aluno(String identificador, String senha, String email, String nome, String curso, int semestreAtual) {
     super(identificador, senha, email, nome);
     this.curso = curso;
-    this.disciplinasMatriculadas = new ArrayList<>();
-    this.semestreAtual = 1;
+    this.semestreAtual=semestreAtual;
   }
 
   @Override
@@ -23,18 +23,28 @@ public class Aluno extends Usuario {
     };
   }
 
-  // Métodos específicos do aluno
   public boolean podeMatricular() {
-    return disciplinasMatriculadas.size() < 6; // 4 obrigatórias + 2 optativas
+    return matricula.getDisciplinas().size() < 6;
+  }
+  
+  public void fazerMatricula(List<Disciplina> disciplinas) {
+    if (this.matricula != null && "Ativa".equals(this.matricula.getStatus())) {
+      throw new IllegalStateException("Aluno já possui matrícula ativa");
+    }
+
+    this.matricula = new Matricula();
+    this.matricula.setPeriodo(semestreAtual);
+    this.matricula.setStatus("Ativa");
+    disciplinas.forEach(this.matricula::adicionarDisciplina);
   }
 
-  // Getters e setters
+
   public String getCurso() {
     return curso;
   }
 
-  public List<String> getDisciplinasMatriculadas() {
-    return new ArrayList<>(disciplinasMatriculadas);
+  public List<Disciplina> getDisciplinas() {
+    return matricula.getDisciplinas();
   }
 
   public int getSemestreAtual() {

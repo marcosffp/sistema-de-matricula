@@ -1,7 +1,8 @@
 package br.projeto.lab.Modelos;
 
+import br.projeto.lab.Enums.Permissao;
+import br.projeto.lab.Utils.GerenciadorSessao;
 import br.projeto.lab.Utils.PasswordUtil;
-import br.projeto.lab.Utils.SessionManager;
 
 public abstract class Usuario {
     private String identificador;
@@ -23,7 +24,7 @@ public abstract class Usuario {
                 PasswordUtil.verificarSenha(senha, this.senhaHash) &&
                 this.ativo) {
 
-            SessionManager sessionManager = SessionManager.getInstancia();
+            GerenciadorSessao sessionManager = GerenciadorSessao.getInstancia();
             return sessionManager.criarSessao(
                     this.identificador,
                     this.getClass().getSimpleName());
@@ -33,17 +34,15 @@ public abstract class Usuario {
     }
 
     public static boolean autenticado(String sessionToken) {
-        return SessionManager.getInstancia().sessaoValida(sessionToken);
+        return GerenciadorSessao.getInstancia().sessaoValida(sessionToken);
     }
 
     public static void logout(String sessionToken) {
-        SessionManager.getInstancia().invalidarSessao(sessionToken);
+        GerenciadorSessao.getInstancia().invalidarSessao(sessionToken);
     }
 
-    // Método para verificar permissões baseado no tipo de usuário
     public abstract boolean temPermissao(Permissao permissao);
 
-    // Getters
     public String getIdentificador() {
         return identificador;
     }
