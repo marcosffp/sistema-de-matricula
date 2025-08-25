@@ -3,15 +3,16 @@ package br.projeto.lab.Modelos;
 import java.util.List;
 import java.util.ArrayList;
 
+import br.projeto.lab.Enums.Permissao;
+
 public class Aluno extends Usuario {
   private String curso;
-  private List<String> disciplinasMatriculadas;
+  private Matricula matricula;
   private int semestreAtual;
 
   public Aluno(String identificador, String senha, String email, String nome, String curso) {
     super(identificador, senha, email, nome);
     this.curso = curso;
-    this.disciplinasMatriculadas = new ArrayList<>();
     this.semestreAtual = 1;
   }
 
@@ -25,7 +26,46 @@ public class Aluno extends Usuario {
 
   // Métodos específicos do aluno
   public boolean podeMatricular() {
-    return disciplinasMatriculadas.size() < 6; // 4 obrigatórias + 2 optativas
+    if(matricula == null) {
+      return true;
+    }
+
+    List<Disciplina> disciplinas = matricula.getDisciplinas();
+    int obrigatorias = 0;
+    int optativas = 0;
+
+    for (Disciplina disciplina : disciplinas) {
+      if (disciplina.isObrigatoria()) {
+        obrigatorias++;
+      } else {
+        optativas++;
+      }
+    }
+
+    return obrigatorias <= 4 && optativas <= 2;
+  }
+
+  public void matricular(Matricula matricula) {
+    if (!temPermissao(Permissao.MATRICULAR_DISCIPLINA)) {
+      throw new IllegalStateException("Aluno não tem permissão para se matricular.");
+    }
+
+    if (!podeMatricular()) {
+      throw new IllegalArgumentException("Quantidade de disciplinas obrigatórias ou optativas excedida.");
+    }
+
+    if (matricula.getDisciplinas().size() > 6) {
+      throw new IllegalArgumentException("Não é permitido se matricular em mais de 6 disciplinas.");
+    }
+
+    this.matricula = matricula;
+  }
+
+  public void desmatricular(){
+    if(!temPermissao(Permissao.CANCELAR_MATRICULA)){
+      throw new IllegalStateException("Aluno não tem permissão para cancelar matrícula.");
+    }
+    this.matricula = null;
   }
 
   // Getters e setters
@@ -33,8 +73,15 @@ public class Aluno extends Usuario {
     return curso;
   }
 
-  public List<String> getDisciplinasMatriculadas() {
-    return new ArrayList<>(disciplinasMatriculadas);
+  public Matricula getMatricula() {
+      return matricula;
+  }
+
+  public List<Disciplina> getDisciplinasMatriculadas() {
+    if (matricula == null) {
+      return new ArrayList<>();
+    }
+    return matricula.getDisciplinas();
   }
 
   public int getSemestreAtual() {

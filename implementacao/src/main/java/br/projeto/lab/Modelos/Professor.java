@@ -1,6 +1,9 @@
 package br.projeto.lab.Modelos;
 
 import java.util.List;
+
+import br.projeto.lab.Enums.Permissao;
+
 import java.util.ArrayList;
 
 public class Professor extends Usuario {

@@ -1,7 +1,8 @@
 package br.projeto.lab.Modelos;
 
-import br.projeto.lab.Utils.PasswordUtil;
-import br.projeto.lab.Utils.SessionManager;
+import br.projeto.lab.Utils.GerenciadorSessao;
+import br.projeto.lab.Utils.SenhaUtil;
+import br.projeto.lab.Enums.Permissao;
 
 public abstract class Usuario {
     private String identificador;
@@ -12,7 +13,7 @@ public abstract class Usuario {
 
     public Usuario(String identificador, String senha, String email, String nome) {
         this.identificador = identificador;
-        this.senhaHash = PasswordUtil.senhaHash(senha);
+        this.senhaHash = SenhaUtil.gerarHashSenha(senha);
         this.email = email;
         this.nome = nome;
         this.ativo = true;
@@ -20,11 +21,11 @@ public abstract class Usuario {
 
     public String realizarLogin(String identificador, String senha) {
         if (this.identificador.equals(identificador) &&
-                PasswordUtil.verificarSenha(senha, this.senhaHash) &&
+                SenhaUtil.verificarSenha(senha, this.senhaHash) &&
                 this.ativo) {
 
-            SessionManager sessionManager = SessionManager.getInstancia();
-            return sessionManager.criarSessao(
+            GerenciadorSessao gerenciadorSessao = GerenciadorSessao.getInstancia();
+            return gerenciadorSessao.criarSessao(
                     this.identificador,
                     this.getClass().getSimpleName());
         } else {
@@ -33,11 +34,11 @@ public abstract class Usuario {
     }
 
     public static boolean autenticado(String sessionToken) {
-        return SessionManager.getInstancia().sessaoValida(sessionToken);
+        return GerenciadorSessao.getInstancia().sessaoValida(sessionToken);
     }
 
     public static void logout(String sessionToken) {
-        SessionManager.getInstancia().invalidarSessao(sessionToken);
+        GerenciadorSessao.getInstancia().invalidarSessao(sessionToken);
     }
 
     // Método para verificar permissões baseado no tipo de usuário
