@@ -34,13 +34,13 @@
 | 05   | Uma disciplina deve ter, no máximo, 60 alunos. Caso contrário, as matrículas são encerradas para a mesma | 2 |
 | 06   | Cada usuário deve possuir uma senha para seu respectivo login | 2 |
 
-## Casos de Uso
+## Diagrama de Casos de Uso
 
-### Diagrama 
+### Diagrama
 
 ![UCM](./projeto/DiagramaCasosDeUso.jpg)
 
-## UML
+## Diagrama de Classes
 
 ### Diagrama
 
