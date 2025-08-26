@@ -1,0 +1,80 @@
+<diagram program="umletino" version="15.1"><zoom_level>5</zoom_level><element><id>UMLClass</id><coordinates><x>375</x><y>235</y><w>175</w><h>105</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+Usuario
+--
+-identificador: String
+-senhaHash: String
+-nome: String
+-email: String
+-ativo: boolean
+--
+_+autenticado(sessionToken: String): boolean_
+_+logout(sessionToken: String): boolean_
+_+logout(sessionToken: String): boolean_
+/+temPermissao(permissao: Permissao): boolean/
++ realizarLogin(identificador: String, senha: String): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>495</x><y>100</y><w>145</w><h>80</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Professor
+--
+-disciplinasLecionadas:List&lt;Disciplina&gt;
+--
++temPermissao(permissao: Permissao): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>575</x><y>330</y><w>155</w><h>95</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Aluno
+--
+- nomeCurso: String
+- codPessoa: String
+- disciplinas: List&lt;Disciplina&gt;
+--
++incluirDisciplina(disciplina: Disciplina): void
++removerDisciplina(disciplina: Disciplina): void
++getDisciplinasMatriculadas(): List&lt;Disciplina&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>190</y><w>130</w><h>95</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Disciplina
+--
+- nome: String
+- optativa: boolean
+- alunos: List&lt;Aluno&gt;
+- periodo: int
+--
++getAlunosMatriculados(): List&lt;Aluno&gt;
++incluirProfessor(professor: Professor): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>280</y><w>20</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=n</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>295</x><y>100</y><w>150</w><h>80</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Secretario
+--
+--
++incluirCurso(): void
++removerCurso(): void
++editarCurso(): void
++getCursos(): void
++temPermissao(permissao: Permissao): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>310</y><w>175</w><h>85</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Permissao
+--
++ GERENCIAR_CURRICULO,
++ GERENCIAR_DISCIPLINAS,
++ GERENCIAR_PROFESSORES,
++ GERENCIAR_ALUNOS,
++ DEFINIR_PERIODO_MATRICULA,
++ MATRICULAR_DISCIPLINA,
++ CANCELAR_MATRICULA,
++ VISUALIZAR_MATRICULAS
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>135</y><w>65</w><h>20</h></coordinates><panel_attributes>m1=1
+m2=n</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>455</x><y>175</y><w>120</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;80;220;80;220;10</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>175</y><w>100</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>180;120;180;80;10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>535</x><y>335</y><w>50</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60;80;60</additional_attributes></element><element><id>Relation</id><coordinates><x>635</x><y>135</y><w>35</w><h>65</h></coordinates><panel_attributes>lt=&lt;-
+m1=*</panel_attributes><additional_attributes>40;110;40;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>145</x><y>190</y><w>185</w><h>105</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Curso
+--
+- nome: String
+- creditos: int
+- disciplinas: List&lt;Disciplinas&gt;
+--
++incluirDisciplina(disciplina: Disciplina): void
++removerDisciplina(disciplina: Disciplina): void
++getDisciplinas(): List&lt;Disciplina&gt;
++getDisciplinasPorPeriodo(periodo: int): List&lt;Disciplinas&gt;
++getDisciplinasPorNome(nome: String): List&lt;Disciplinas&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>215</x><y>140</y><w>90</w><h>60</h></coordinates><panel_attributes>m1=1
+m2=n</panel_attributes><additional_attributes>160;10;10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>335</y><w>80</w><h>30</h></coordinates><panel_attributes>lt=&lt;..
+&lt;&lt;usa&gt;&gt;</panel_attributes><additional_attributes>10;40;140;40;140;10</additional_attributes></element></diagram>
