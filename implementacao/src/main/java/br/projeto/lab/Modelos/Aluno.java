@@ -1,18 +1,18 @@
 package br.projeto.lab.Modelos;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.projeto.lab.Enums.Permissao;
 
 public class Aluno extends Usuario {
-  private String curso;
-  private int semestreAtual;
-  private Matricula matricula;
+  private String nomeCurso;
+  private Set<Disciplina> disciplinasMatriculadas;
 
-  public Aluno(String identificador, String senha, String email, String nome, String curso, int semestreAtual) {
-    super(identificador, senha, email, nome);
-    this.curso = curso;
-    this.semestreAtual=semestreAtual;
+  public Aluno(String codPessoa, String senha, String email, String nome, String curso, int semestreAtual) {
+    super(codPessoa, senha, email, nome);
+    this.nomeCurso = curso;
+    this.disciplinasMatriculadas = new HashSet<>();
   }
 
   @Override
@@ -23,31 +23,27 @@ public class Aluno extends Usuario {
     };
   }
 
-  public boolean podeMatricular() {
-    return matricula.getDisciplinas().size() < 6;
-  }
-  
-  public void fazerMatricula(List<Disciplina> disciplinas) {
-    if (this.matricula != null && "Ativa".equals(this.matricula.getStatus())) {
-      throw new IllegalStateException("Aluno já possui matrícula ativa");
-    }
-
-    this.matricula = new Matricula();
-    this.matricula.setPeriodo(semestreAtual);
-    this.matricula.setStatus("Ativa");
-    disciplinas.forEach(this.matricula::adicionarDisciplina);
+  public String getNomeCurso() {
+    return nomeCurso;
   }
 
-
-  public String getCurso() {
-    return curso;
+  public void setNomeCurso(String nomeCurso) {
+    this.nomeCurso = nomeCurso;
   }
 
-  public List<Disciplina> getDisciplinas() {
-    return matricula.getDisciplinas();
+  public void incluirDisciplina(Disciplina disciplina){
+    if(disciplina == null)
+      throw new IllegalArgumentException("Disciplina deve existir no sistema");
+    this.disciplinasMatriculadas.add(disciplina);
   }
 
-  public int getSemestreAtual() {
-    return semestreAtual;
+  public Set<Disciplina> getDisciplinasMatriculadas() {
+    return disciplinasMatriculadas;
+  }
+
+  public void removerDisciplina(Disciplina disciplina){
+    if(disciplina == null)
+      throw new IllegalArgumentException("Disciplina deve existir no sistema");
+    this.disciplinasMatriculadas.remove(disciplina);
   }
 }

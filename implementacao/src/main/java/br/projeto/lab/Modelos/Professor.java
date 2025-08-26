@@ -1,17 +1,16 @@
 package br.projeto.lab.Modelos;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.projeto.lab.Enums.Permissao;
 
-import java.util.ArrayList;
+public class Professor extends Usuario {
+  private Set<Disciplina> disciplinasLecionadas;
 
-public class Professor extends Funcionario {
-  private List<Disciplina> disciplinasLecionadas;
-
-  public Professor(String identificador, String senha, String email, String nome, String departamento) {
-    super(identificador, senha, email, nome, departamento);
-    this.disciplinasLecionadas = new ArrayList<>();
+  public Professor(String identificador, String senha, String email, String nome) {
+    super(identificador, senha, email, nome);
+    this.disciplinasLecionadas = new HashSet<>();
   }
 
   @Override
@@ -22,7 +21,7 @@ public class Professor extends Funcionario {
     };
   }
 
-  public List<Aluno> getAlunosPorDisciplina(Disciplina disciplina) {
+  public Set<Aluno> getAlunosPorDisciplina(Disciplina disciplina) {
     if (!disciplinasLecionadas.contains(disciplina)) {
       throw new IllegalArgumentException("Professor não ministra esta disciplina");
     }

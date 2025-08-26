@@ -1,34 +1,31 @@
 package br.projeto.lab.Modelos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Disciplina {
-  private Long id;
   private String nome;
+  private int periodo;
   private boolean optativa;
   private Professor professor;
-  private List<Aluno> alunosMatriculados = new ArrayList<>();
+  private Set<Aluno> alunosMatriculados = new HashSet<>();
 
-  public Disciplina(Long id, String nome, boolean optativa) {
-    this.id = id;
+  public Disciplina(int periodo, String nome, boolean optativa) {
     this.nome = nome;
+    this.periodo = periodo;
     this.optativa = optativa;
   }
 
-  public void adicionarAluno(Aluno aluno) {
-    if (!alunosMatriculados.contains(aluno)) {
-      alunosMatriculados.add(aluno);
-    }
+  public void incluirAluno(Aluno aluno) {
+    alunosMatriculados.add(aluno);
   }
 
   public void removerAluno(Aluno aluno) {
     alunosMatriculados.remove(aluno);
   }
 
-
-  public Long getId() {
-    return id;
+  public int getPeriodo() {
+    return periodo;
   }
 
   public String getNome() {
@@ -39,8 +36,8 @@ public class Disciplina {
     return professor;
   }
 
-  public List<Aluno> getAlunosMatriculados() {
-    return new ArrayList<>(alunosMatriculados);
+  public Set<Aluno> getAlunosMatriculados() {
+    return new HashSet<>(alunosMatriculados);
   }
 
   public void setNome(String nome) {
@@ -51,15 +48,7 @@ public class Disciplina {
     this.professor = professor;
   }
 
-  public void setAlunosMatriculados(List<Aluno> alunosMatriculados) {
-    this.alunosMatriculados = alunosMatriculados;
-  }
-
   public boolean isOptativa() {
     return optativa;
-  }
-
-  public void setOptativa(boolean optativa) {
-    this.optativa = optativa;
   }
 }
