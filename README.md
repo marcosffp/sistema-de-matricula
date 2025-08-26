@@ -44,4 +44,4 @@
 
 ### Diagrama
 
-![Diagrama UML](./projeto/DiagramaClasses.jpg)
+![Diagrama UML](./projeto/DiagramaClasses.png)
