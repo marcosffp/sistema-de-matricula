@@ -7,13 +7,11 @@ public class Matricula {
     private Aluno aluno;
     private List<Disciplina> disciplinas;
     private int semestre;
-    private boolean ativa;
 
     public Matricula(Aluno aluno, List<Disciplina> disciplinas, int semestre) {
         this.aluno = aluno;
         this.disciplinas = new ArrayList<>(disciplinas);
         this.semestre = semestre;
-        this.ativa = true;
     }
 
     public Aluno getAluno() {
@@ -26,14 +24,6 @@ public class Matricula {
 
     public int getSemestre() {
         return semestre;
-    }
-
-    public boolean isAtiva() {
-        return ativa;
-    }
-
-    public void cancelar() {
-        this.ativa = false;
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
