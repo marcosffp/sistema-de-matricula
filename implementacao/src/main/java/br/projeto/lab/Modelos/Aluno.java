@@ -9,7 +9,7 @@ public class Aluno extends Usuario {
   private String nomeCurso;
   private Set<Disciplina> disciplinasMatriculadas;
 
-  public Aluno(String codPessoa, String senha, String email, String nome, String curso, int semestreAtual) {
+  public Aluno(String codPessoa, String senha, String email, String nome, String curso) {
     super(codPessoa, senha, email, nome);
     this.nomeCurso = curso;
     this.disciplinasMatriculadas = new HashSet<>();

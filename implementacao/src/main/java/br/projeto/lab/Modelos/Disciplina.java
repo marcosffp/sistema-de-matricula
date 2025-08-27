@@ -10,7 +10,7 @@ public class Disciplina {
   private Professor professor;
   private Set<Aluno> alunosMatriculados = new HashSet<>();
 
-  public Disciplina(int periodo, String nome, boolean optativa) {
+  public Disciplina(String nome, int periodo, boolean optativa) {
     this.nome = nome;
     this.periodo = periodo;
     this.optativa = optativa;
