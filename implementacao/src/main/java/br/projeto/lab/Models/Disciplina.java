@@ -1,4 +1,4 @@
-package br.projeto.lab.Modelos;
+package br.projeto.lab.Models;
 
 import java.util.HashSet;
 import java.util.Set;

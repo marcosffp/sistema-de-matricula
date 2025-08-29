@@ -1,6 +1,6 @@
 package br.projeto.lab;
 
-import br.projeto.lab.Modelos.*;
+import br.projeto.lab.Models.*;
 import br.projeto.lab.Utils.*;
 
 public class InitUsuarios {

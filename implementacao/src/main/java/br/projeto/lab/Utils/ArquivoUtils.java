@@ -1,172 +1,123 @@
 package br.projeto.lab.Utils;
 
-import br.projeto.lab.Modelos.*;
-import java.io.*;
-import java.util.*;
+import br.projeto.lab.Models.*;
+import br.projeto.lab.Repositories.*;
+import br.projeto.lab.Services.ValidationService;
+import java.io.IOException;
+import java.util.List;
 
 public class ArquivoUtils {
-    private static final String ALUNOS_FILE = "implementacao/arquivos/alunos.csv";
-    private static final String PROFESSORES_FILE = "implementacao/arquivos/professores.csv";
-    private static final String SECRETARIAS_FILE = "implementacao/arquivos/secretarias.csv";
-    private static final String CURSOS_FILE = "implementacao/arquivos/cursos.csv";
-    private static final String DISCIPLINAS_FILE = "implementacao/arquivos/disciplinas.csv";
-    private static final String LOGINS_FILE = "implementacao/arquivos/logins.csv";
 
-    // Alunos
+    // Delegação para repositórios - Usuários
     public static void salvarAluno(Aluno aluno) throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ALUNOS_FILE, true))) {
-            bw.write(aluno.getIdentificador() + ";" + aluno.getNome() + ";" + aluno.getEmail() + ";" +
-                    aluno.getNomeCurso() + "\n");
-        }
+        UsuarioRepository.salvarAluno(aluno);
+    }
+
+    public static void salvarProfessor(Professor professor) throws IOException {
+        UsuarioRepository.salvarProfessor(professor);
+    }
+
+    public static void salvarSecretaria(Secretaria secretaria) throws IOException {
+        UsuarioRepository.salvarSecretaria(secretaria);
+    }
+
+    public static void salvarLogin(String tipo, String id, String senha) throws IOException {
+        LoginRepository.salvarLogin(tipo, id, senha);
     }
 
     public static Aluno buscarAlunoPorId(String id) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(ALUNOS_FILE))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(";");
-                if (partes[0].equals(id)) {
-                    return new Aluno(partes[0], "", partes[2], partes[1], partes[3]);
-                }
-            }
-        }
-        return null;
-    }
-
-    // Professores
-    public static void salvarProfessor(Professor professor) throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(PROFESSORES_FILE, true))) {
-            bw.write(professor.getIdentificador() + ";" + professor.getNome() + ";" + professor.getEmail() + "\n");
-        }
+        return UsuarioRepository.buscarAlunoPorId(id);
     }
 
     public static Professor buscarProfessorPorId(String id) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(PROFESSORES_FILE))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(";");
-                if (partes[0].equals(id)) {
-                    return new Professor(partes[0], "", partes[2], partes[1]);
-                }
-            }
-        }
-        return null;
-    }
-
-    // Secretarias
-    public static void salvarSecretaria(Secretaria secretaria) throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(SECRETARIAS_FILE, true))) {
-            bw.write(secretaria.getIdentificador() + ";" + secretaria.getNome() + ";" + secretaria.getEmail() + "\n");
-        }
+        return UsuarioRepository.buscarProfessorPorId(id);
     }
 
     public static Secretaria buscarSecretariaPorId(String id) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(SECRETARIAS_FILE))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(";");
-                if (partes[0].equals(id)) {
-                    return new Secretaria(partes[0], "", partes[2], partes[1]);
-                }
-            }
-        }
-        return null;
+        return UsuarioRepository.buscarSecretariaPorId(id);
     }
 
-    // Cursos
+    public static List<Usuario> listarUsuarios() throws IOException {
+        return UsuarioRepository.listarUsuarios();
+    }
+
+    public static void removerUsuario(String idUsuario) throws IOException {
+        UsuarioRepository.removerUsuario(idUsuario);
+    }
+
+    // Delegação para repositórios - Cursos
     public static void salvarCurso(Curso curso) throws IOException {
-        String idCurso = gerarIdNumericoUnico(CURSOS_FILE, 6); // 6 dígitos
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CURSOS_FILE, true))) {
-            bw.write(idCurso + ";" + curso.getNome() + ";" + curso.getCreditos() + "\n");
-        }
+        CursoRepository.salvarCurso(curso);
     }
 
     public static Curso buscarCursoPorId(String idCurso) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(CURSOS_FILE))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(";");
-                if (partes[0].equals(idCurso)) {
-                    return new Curso(partes[1], Integer.parseInt(partes[2]));
-                }
-            }
-        }
-        return null;
+        return CursoRepository.buscarCursoPorId(idCurso);
     }
 
-    // Disciplinas
+    public static List<Curso> listarCursos() throws IOException {
+        return CursoRepository.listarCursos();
+    }
+
+    public static void removerCurso(String idCurso) throws IOException {
+        CursoRepository.removerCurso(idCurso);
+    }
+
+    // Delegação para repositórios - Disciplinas
     public static void salvarDisciplina(Disciplina disciplina, String idCurso, String idProf) throws IOException {
-        String idDisc = gerarIdNumericoUnico(DISCIPLINAS_FILE, 6); // 6 dígitos
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(DISCIPLINAS_FILE, true))) {
-            bw.write(idDisc + ";" + disciplina.getNome() + ";" + disciplina.getPeriodo() + ";" +
-                    disciplina.isOptativa() + ";" + idProf + ";" + idCurso + "\n");
-        }
+        DisciplinaRepository.salvarDisciplina(disciplina, idCurso, idProf);
     }
 
     public static Disciplina buscarDisciplinaPorId(String idDisc) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(DISCIPLINAS_FILE))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(";");
-                if (partes[0].equals(idDisc)) {
-                    String nome = partes[1];
-                    int periodo = Integer.parseInt(partes[2]);
-                    boolean optativa = Boolean.parseBoolean(partes[3]);
-                    return new Disciplina(nome, periodo, optativa);
-                }
+        return DisciplinaRepository.buscarDisciplinaPorId(idDisc);
+    }
+
+    public static List<Disciplina> listarDisciplinas() throws IOException {
+        return DisciplinaRepository.listarDisciplinas();
+    }
+
+    public static void removerDisciplina(String idDisciplina) throws IOException {
+        DisciplinaRepository.removerDisciplina(idDisciplina);
+    }
+
+    // Delegação para repositórios - Matrículas
+    public static void salvarAlunoDisciplina(AlunoDisciplina relacao) throws IOException {
+        MatriculaRepository.salvarAlunoDisciplina(relacao);
+    }
+
+    public static void removerAlunoDisciplina(String idAluno, String idDisciplina) throws IOException {
+        MatriculaRepository.removerAlunoDisciplina(idAluno, idDisciplina);
+    }
+
+    public static List<AlunoDisciplina> listarAlunosMatriculadosNaDisciplina(String idDisciplina) throws IOException {
+        return MatriculaRepository.listarAlunosMatriculadosNaDisciplina(idDisciplina);
+    }
+
+    // Delegação para validações
+    public static boolean cursoTemDisciplinas(String idCurso) throws IOException {
+        return ValidationService.cursoTemDisciplinas(idCurso);
+    }
+
+    public static boolean disciplinaTemAlunos(String idDisciplina) throws IOException {
+        return ValidationService.disciplinaTemAlunos(idDisciplina);
+    }
+
+    public static boolean usuarioTemVinculos(String idUsuario) throws IOException {
+        return ValidationService.usuarioTemVinculos(idUsuario);
+    }
+
+    // Autenticação (única responsabilidade restante)
+    public static Usuario autenticarUsuario(String id, String senha) throws Exception {
+        String[] partes = LoginRepository.buscarLogin(id, senha);
+        if (partes != null) {
+            String tipo = partes[0];
+            if ("aluno".equals(tipo)) {
+                return buscarAlunoPorId(id);
+            } else if ("professor".equals(tipo)) {
+                return buscarProfessorPorId(id);
+            } else if ("secretaria".equals(tipo)) {
+                return buscarSecretariaPorId(id);
             }
         }
         return null;
-    }
-
-    public static Usuario autenticarUsuario(String id, String senha) throws Exception {
-        try (BufferedReader br = new BufferedReader(new FileReader(LOGINS_FILE))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(";");
-                if (partes[1].equals(id)) {
-                    String senhaHash = partes[2];
-                    if (SenhaUtil.verificarSenha(senha, senhaHash)) {
-                        return UsuarioFactory.criarUsuario(partes[0], id);
-                    } else {
-                        throw new Exception("Senha incorreta.");
-                    }
-                }
-            }
-            throw new Exception("Usuário não encontrado.");
-        }
-    }
-
-    public static void salvarLogin(String tipo, String id, String senhaNovo) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(LOGINS_FILE, true))) {
-            String senhaHash = SenhaUtil.gerarHashSenha(senhaNovo);
-            bw.write(tipo + ";" + id + ";" + senhaHash + "\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String gerarIdNumericoUnico(String arquivo, int tamanho) throws IOException {
-        Random rand = new Random();
-        String id;
-        Set<String> idsExistentes = new HashSet<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(";");
-                idsExistentes.add(partes[0]);
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao abrir arquivo... Gerando ID único");
-        } finally {
-            do {
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < tamanho; i++) {
-                    sb.append(rand.nextInt(10));
-                }
-                id = sb.toString();
-            } while (idsExistentes.contains(id));
-        }
-        return id;
     }
 }

@@ -1,4 +1,4 @@
-package br.projeto.lab.Modelos;
+package br.projeto.lab.Models;
 
 import br.projeto.lab.Enums.Permissao;
 import br.projeto.lab.Utils.SenhaUtil;
