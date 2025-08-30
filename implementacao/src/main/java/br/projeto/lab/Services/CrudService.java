@@ -53,21 +53,15 @@ public class CrudService {
         ArquivoUtils.salvarLogin(tipo, id, senhaNovo);
         
         if ("aluno".equals(tipo)) {
-            System.out.print("Matrícula: ");
-            String matricula = scanner.nextLine();
             System.out.print("Curso: ");
             String curso = scanner.nextLine();
-            Aluno aluno = new Aluno(id, senhaNovo, nome, matricula, curso);
+            Aluno aluno = new Aluno(id, senhaNovo, email, nome, curso);
             ArquivoUtils.salvarAluno(aluno);
         } else if ("professor".equals(tipo)) {
-            System.out.print("Departamento: ");
-            String departamento = scanner.nextLine();
-            Professor professor = new Professor(id, senhaNovo, nome, departamento);
+            Professor professor = new Professor(id, senhaNovo, email, nome);
             ArquivoUtils.salvarProfessor(professor);
         } else if ("secretaria".equals(tipo)) {
-            System.out.print("Departamento: ");
-            String departamento = scanner.nextLine();
-            Secretaria secretaria = new Secretaria(id, senhaNovo, nome, departamento);
+            Secretaria secretaria = new Secretaria(id, senhaNovo, email, nome);
             ArquivoUtils.salvarSecretaria(secretaria);
         }
         System.out.println("Usuário criado!");

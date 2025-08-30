@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Disciplina {
+  private String id;
   private String nome;
   private int periodo;
   private boolean optativa;
@@ -14,6 +15,13 @@ public class Disciplina {
     this.nome = nome;
     this.periodo = periodo;
     this.optativa = optativa;
+  }
+
+  public Disciplina(String nome, int periodo, boolean optativa, String id) {
+    this.nome = nome;
+    this.periodo = periodo;
+    this.optativa = optativa;
+    this.id = id;
   }
 
   public void incluirAluno(Aluno aluno) {
@@ -50,5 +58,9 @@ public class Disciplina {
 
   public boolean isOptativa() {
     return optativa;
+  }
+
+  public String getId() {
+    return id;
   }
 }

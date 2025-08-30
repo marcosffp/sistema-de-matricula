@@ -20,7 +20,7 @@ public class CursoRepository {
         for (String linha : linhas) {
             String[] partes = linha.split(";");
             if (partes[0].equals(idCurso)) {
-                return new Curso(partes[1], Integer.parseInt(partes[2]));
+                return new Curso(partes[1], Integer.parseInt(partes[2]), partes[0]);
             }
         }
         return null;
@@ -33,7 +33,7 @@ public class CursoRepository {
         for (String linha : linhas) {
             String[] partes = linha.split(";");
             if (partes.length >= 3) {
-                cursos.add(new Curso(partes[1], Integer.parseInt(partes[2])));
+                cursos.add(new Curso(partes[1], Integer.parseInt(partes[2]), partes[0]));
             }
         }
         

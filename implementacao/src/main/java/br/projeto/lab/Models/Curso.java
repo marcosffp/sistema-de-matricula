@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Curso {
+    private String id;
     private String nome;
     private int creditos;
     private Set<Disciplina> disciplinas;
@@ -15,10 +16,11 @@ public class Curso {
         this.disciplinas = new HashSet<>();
     }
 
-    public Curso(String nome, int creditos, Set<Disciplina> disciplinas) {
+    public Curso(String nome, int creditos, String id) {
         this.nome = nome;
         this.creditos = creditos;
-        this.disciplinas = disciplinas;
+        this.id = id;
+        this.disciplinas = new HashSet<>();
     }
 
     public String getNome() {
@@ -55,4 +57,7 @@ public class Curso {
         this.disciplinas.remove(disciplina);
     }
 
+    public String getId() {
+        return id;
+    }
 }

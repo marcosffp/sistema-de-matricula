@@ -81,15 +81,15 @@ public class ArquivoUtils {
 
     // Delegação para repositórios - Matrículas
     public static void salvarAlunoDisciplina(AlunoDisciplina relacao) throws IOException {
-        MatriculaRepository.salvarAlunoDisciplina(relacao);
+        AlunoDisciplinaRepository.salvarAlunoDisciplina(relacao);
     }
 
     public static void removerAlunoDisciplina(String idAluno, String idDisciplina) throws IOException {
-        MatriculaRepository.removerAlunoDisciplina(idAluno, idDisciplina);
+        AlunoDisciplinaRepository.removerAlunoDisciplina(idAluno, idDisciplina);
     }
 
     public static List<AlunoDisciplina> listarAlunosMatriculadosNaDisciplina(String idDisciplina) throws IOException {
-        return MatriculaRepository.listarAlunosMatriculadosNaDisciplina(idDisciplina);
+        return AlunoDisciplinaRepository.listarAlunosMatriculadosNaDisciplina(idDisciplina);
     }
 
     // Delegação para validações

@@ -21,7 +21,7 @@ public class DisciplinaRepository {
         for (String linha : linhas) {
             String[] partes = linha.split(";");
             if (partes[0].equals(idDisc)) {
-                return new Disciplina(partes[1], Integer.parseInt(partes[2]), Boolean.parseBoolean(partes[3]));
+                return new Disciplina(partes[1], Integer.parseInt(partes[2]), Boolean.parseBoolean(partes[3]), partes[0]);
             }
         }
         return null;
@@ -34,7 +34,7 @@ public class DisciplinaRepository {
         for (String linha : linhas) {
             String[] partes = linha.split(";");
             if (partes.length >= 4) {
-                disciplinas.add(new Disciplina(partes[1], Integer.parseInt(partes[2]), Boolean.parseBoolean(partes[3])));
+                disciplinas.add(new Disciplina(partes[1], Integer.parseInt(partes[2]), Boolean.parseBoolean(partes[3]), partes[0]));
             }
         }
         

@@ -6,12 +6,10 @@ import java.util.Scanner;
 
 public class SecretariaHandler {
     private Scanner scanner;
-    private SistemaMatriculaFacade facade;
     private CrudService crudService;
 
     public SecretariaHandler(Scanner scanner, SistemaMatriculaFacade facade) {
         this.scanner = scanner;
-        this.facade = facade;
         this.crudService = new CrudService(facade);
     }
 

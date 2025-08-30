@@ -34,7 +34,7 @@ public class UsuarioRepository {
         for (String linha : linhas) {
             String[] partes = linha.split(";");
             if (partes[0].equals(id)) {
-                return new Professor(partes[0], "", partes[1], partes[2]);
+                return new Professor(partes[0], "", partes[2], partes[1]);
             }
         }
         return null;
@@ -45,7 +45,7 @@ public class UsuarioRepository {
         for (String linha : linhas) {
             String[] partes = linha.split(";");
             if (partes[0].equals(id)) {
-                return new Secretaria(partes[0], "", partes[1], partes[2]);
+                return new Secretaria(partes[0], "", partes[2], partes[1]);
             }
         }
         return null;

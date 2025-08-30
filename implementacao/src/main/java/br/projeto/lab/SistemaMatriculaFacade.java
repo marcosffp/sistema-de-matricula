@@ -120,7 +120,7 @@ public class SistemaMatriculaFacade {
         }
         System.out.println("=== Cursos ===");
         for (Curso curso : cursos) {
-            System.out.println("Nome: " + curso.getNome() + " - Créditos: " + curso.getCreditos());
+            System.out.println("ID: " + curso.getId() + " - Nome: " + curso.getNome() + " - Créditos: " + curso.getCreditos());
         }
     }
 
@@ -130,7 +130,7 @@ public class SistemaMatriculaFacade {
         }
         System.out.println("=== Disciplinas ===");
         for (Disciplina disc : disciplinas) {
-            System.out.println("Nome: " + disc.getNome() + " - Período: " + disc.getPeriodo() + 
+            System.out.println("ID: " + disc.getId() + " - Nome: " + disc.getNome() + " - Período: " + disc.getPeriodo() + 
                              " - Optativa: " + (disc.isOptativa() ? "Sim" : "Não"));
         }
     }

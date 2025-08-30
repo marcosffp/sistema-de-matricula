@@ -5,7 +5,7 @@ import br.projeto.lab.Utils.FileManager;
 import java.io.IOException;
 import java.util.*;
 
-public class MatriculaRepository {
+public class AlunoDisciplinaRepository {
     private static final String ALUNO_DISCIPLINA_FILE = "implementacao/arquivos/aluno_disciplina.csv";
 
     public static void salvarAlunoDisciplina(AlunoDisciplina relacao) throws IOException {
