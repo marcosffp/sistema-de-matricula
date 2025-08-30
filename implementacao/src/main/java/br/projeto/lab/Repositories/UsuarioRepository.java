@@ -79,7 +79,7 @@ public class UsuarioRepository {
         for (String linha : linhasProfessores) {
             String[] partes = linha.split(";");
             if (partes.length >= 3) {
-                usuarios.add(new Professor(partes[0], "", partes[1], partes[2]));
+                usuarios.add(new Professor(partes[0], "", partes[2], partes[1]));
             }
         }
         
@@ -88,7 +88,7 @@ public class UsuarioRepository {
         for (String linha : linhasSecretarias) {
             String[] partes = linha.split(";");
             if (partes.length >= 3) {
-                usuarios.add(new Secretaria(partes[0], "", partes[1], partes[2]));
+                usuarios.add(new Secretaria(partes[0], "", partes[2], partes[1]));
             }
         }
         

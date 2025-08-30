@@ -60,4 +60,9 @@ public class Curso {
     public String getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + getId() + " - Nome: " + getNome() + " - Créditos: " + getCreditos();
+    }
 }

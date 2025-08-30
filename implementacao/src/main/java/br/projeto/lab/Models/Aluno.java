@@ -46,4 +46,9 @@ public class Aluno extends Usuario {
       throw new IllegalArgumentException("Disciplina deve existir no sistema");
     this.disciplinasMatriculadas.remove(disciplina);
   }
+  
+  @Override
+  public String toString() {
+    return super.toString() + " - Curso: " + getNomeCurso();
+  }
 }

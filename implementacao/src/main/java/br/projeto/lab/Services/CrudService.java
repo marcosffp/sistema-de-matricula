@@ -85,6 +85,28 @@ public class CrudService {
         }
     }
 
+    public void listarDisciplinasPorCurso(Scanner scanner) throws Exception {
+        System.out.print("ID do curso: ");
+        String idCurso = scanner.nextLine();
+        try {
+            List<Disciplina> disciplinas = ArquivoUtils.listarDisciplinasPorCurso(idCurso);
+            facade.exibirDisciplinas(disciplinas);
+        } catch (SecurityException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    public void listarDisciplinasPorProfessor(Scanner scanner) throws Exception {
+        System.out.print("ID do professor: ");
+        String idProfessor = scanner.nextLine();
+        try {
+            List<Disciplina> disciplinas = ArquivoUtils.listarDisciplinasPorProfessor(idProfessor);
+            facade.exibirDisciplinas(disciplinas);
+        } catch (SecurityException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
     public void listarUsuarios() throws Exception {
         try {
             List<Usuario> usuarios = ArquivoUtils.listarUsuarios();

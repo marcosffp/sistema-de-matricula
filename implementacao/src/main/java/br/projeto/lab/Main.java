@@ -32,7 +32,7 @@ public class Main {
         } else if (usuario instanceof Aluno) {
             menuHandler.menuAluno((Aluno) usuario);
         } else if (usuario instanceof Professor) {
-            menuHandler.menuProfessor();
+            menuHandler.menuProfessor((Professor) usuario);
         }
         
         scanner.close();

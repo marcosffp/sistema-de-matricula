@@ -14,14 +14,15 @@ public class ProfessorHandler {
         this.facade = facade;
     }
 
-    public void executarMenu() throws Exception {
+    public void executarMenu(Professor professor) throws Exception {
         while (true) {
             exibirMenu();
             int opcao = Integer.parseInt(scanner.nextLine());
             
             switch (opcao) {
                 case 1: listarAlunosDisciplina(); break;
-                case 2: System.out.println("Saindo..."); return;
+                case 2: listarMinhasDisciplinas(professor); break;
+                case 3: System.out.println("Saindo..."); return;
                 default: System.out.println("Opção inválida!");
             }
         }
@@ -30,7 +31,8 @@ public class ProfessorHandler {
     private void exibirMenu() {
         System.out.println("\nMenu Professor:");
         System.out.println("1. Listar alunos de uma disciplina");
-        System.out.println("2. Sair");
+        System.out.println("2. Listar minhas disciplinas");
+        System.out.println("3. Sair");
         System.out.print("Escolha: ");
     }
 
@@ -52,6 +54,14 @@ public class ProfessorHandler {
             facade.exibirAlunosMatriculados(relacoes, alunos);
         } catch (SecurityException e) {
             System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    private void listarMinhasDisciplinas(Professor professor) throws Exception {
+        System.out.println("Minhas Disciplinas:");
+        List<Disciplina> disciplinas = ArquivoUtils.listarDisciplinasPorProfessor(professor.getIdentificador());
+        for (Disciplina disc : disciplinas) {
+            System.out.println(disc);
         }
     }
 }

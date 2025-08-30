@@ -33,4 +33,10 @@ public abstract class Usuario {
     public String getNome() {
         return nome;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + getIdentificador() + " - Nome: " + getNome() + 
+                             " - Tipo: " + getClass().getSimpleName();
+    }
 }

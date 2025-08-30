@@ -12,63 +12,6 @@ public class SistemaMatriculaFacade {
         this.usuario = usuario;
     }
 
-    // Gerenciar disciplinas do curso
-    public void incluirDisciplinaNoCurso(Curso curso, Disciplina disciplina) {
-        if (!usuario.temPermissao(Permissao.GERENCIAR_DISCIPLINAS)) {
-            throw new SecurityException("Usuário sem permissão para incluir disciplina.");
-        }
-        curso.incluirDisciplina(disciplina);
-    }
-
-    public void removerDisciplinaDoCurso(Curso curso, Disciplina disciplina) {
-        if (!usuario.temPermissao(Permissao.GERENCIAR_DISCIPLINAS)) {
-            throw new SecurityException("Usuário sem permissão para remover disciplina.");
-        }
-        curso.removerDisciplina(disciplina);
-    }
-
-    // Gerenciar professores
-    public void atribuirProfessorADisciplina(Disciplina disciplina, Professor professor) {
-        if (!usuario.temPermissao(Permissao.GERENCIAR_PROFESSORES)) {
-            throw new SecurityException("Usuário sem permissão para gerenciar professores.");
-        }
-        disciplina.setProfessor(professor);
-    }
-
-    // Gerenciar alunos
-    public void incluirAlunoNaDisciplina(Disciplina disciplina, Aluno aluno) {
-        if (!usuario.temPermissao(Permissao.GERENCIAR_ALUNOS)) {
-            throw new SecurityException("Usuário sem permissão para gerenciar alunos.");
-        }
-        disciplina.incluirAluno(aluno);
-        aluno.incluirDisciplina(disciplina);
-    }
-
-    public void removerAlunoDaDisciplina(Disciplina disciplina, Aluno aluno) {
-        if (!usuario.temPermissao(Permissao.GERENCIAR_ALUNOS)) {
-            throw new SecurityException("Usuário sem permissão para gerenciar alunos.");
-        }
-        disciplina.removerAluno(aluno);
-        aluno.removerDisciplina(disciplina);
-    }
-
-    // Matrícula do aluno (caso o usuário seja aluno)
-    public void matricularEmDisciplina(Aluno aluno, Disciplina disciplina) {
-        if (!usuario.temPermissao(Permissao.MATRICULAR_DISCIPLINA)) {
-            throw new SecurityException("Usuário sem permissão para matricular.");
-        }
-        aluno.incluirDisciplina(disciplina);
-        disciplina.incluirAluno(aluno);
-    }
-
-    public void cancelarMatriculaEmDisciplina(Aluno aluno, Disciplina disciplina) {
-        if (!usuario.temPermissao(Permissao.CANCELAR_MATRICULA)) {
-            throw new SecurityException("Usuário sem permissão para cancelar matrícula.");
-        }
-        aluno.removerDisciplina(disciplina);
-        disciplina.removerAluno(aluno);
-    }
-
     // Validação para operações de matrícula
     public boolean podeMatricularAluno(Aluno aluno, Disciplina disciplina) {
         return usuario.temPermissao(Permissao.MATRICULAR_DISCIPLINA) || 
@@ -120,7 +63,7 @@ public class SistemaMatriculaFacade {
         }
         System.out.println("=== Cursos ===");
         for (Curso curso : cursos) {
-            System.out.println("ID: " + curso.getId() + " - Nome: " + curso.getNome() + " - Créditos: " + curso.getCreditos());
+            System.out.println(curso);
         }
     }
 
@@ -130,8 +73,7 @@ public class SistemaMatriculaFacade {
         }
         System.out.println("=== Disciplinas ===");
         for (Disciplina disc : disciplinas) {
-            System.out.println("ID: " + disc.getId() + " - Nome: " + disc.getNome() + " - Período: " + disc.getPeriodo() + 
-                             " - Optativa: " + (disc.isOptativa() ? "Sim" : "Não"));
+            System.out.println(disc);
         }
     }
 
@@ -141,8 +83,7 @@ public class SistemaMatriculaFacade {
         }
         System.out.println("=== Usuários ===");
         for (Usuario user : usuarios) {
-            System.out.println("ID: " + user.getIdentificador() + " - Nome: " + user.getNome() + 
-                             " - Tipo: " + user.getClass().getSimpleName());
+            System.out.println(user);
         }
     }
 
@@ -154,7 +95,7 @@ public class SistemaMatriculaFacade {
         for (AlunoDisciplina relacao : relacoes) {
             for (Aluno aluno : alunos) {
                 if (aluno.getIdentificador().equals(relacao.getIdAluno())) {
-                    System.out.println("Aluno: " + aluno.getNome() + " - Créditos: " + relacao.getCreditosObtidos());
+                    System.out.println("ID: " + aluno.getIdentificador() +" - Aluno: " + aluno.getNome() + " - Créditos: " + relacao.getCreditosObtidos());
                     break;
                 }
             }

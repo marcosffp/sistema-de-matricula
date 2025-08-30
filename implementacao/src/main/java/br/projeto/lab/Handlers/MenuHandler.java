@@ -24,8 +24,8 @@ public class MenuHandler {
         alunoHandler.executarMenu(aluno);
     }
 
-    public void menuProfessor() throws Exception {
+    public void menuProfessor(Professor professor) throws Exception {
         ProfessorHandler professorHandler = new ProfessorHandler(scanner, facade);
-        professorHandler.executarMenu();
+        professorHandler.executarMenu(professor);
     }
 }

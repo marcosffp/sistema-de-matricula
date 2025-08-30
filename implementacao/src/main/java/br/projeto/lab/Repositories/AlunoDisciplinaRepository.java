@@ -40,4 +40,16 @@ public class AlunoDisciplinaRepository {
         
         return alunos;
     }
+
+    public static List<AlunoDisciplina> listarDisciplinasMatriculadasDoAluno(String idAluno) throws IOException {
+        List<AlunoDisciplina> disciplinas = new ArrayList<>();
+        List<String> linhas = FileManager.lerArquivo(ALUNO_DISCIPLINA_FILE);
+        for (String linha : linhas) {
+            String[] partes = linha.split(";");
+            if (partes[0].equals(idAluno)) {
+                disciplinas.add(new AlunoDisciplina(partes[0], partes[1], Integer.parseInt(partes[2])));
+            }
+        }
+        return disciplinas;
+    }
 }

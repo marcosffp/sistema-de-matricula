@@ -54,6 +54,10 @@ public class ArquivoUtils {
         return CursoRepository.buscarCursoPorId(idCurso);
     }
 
+    public static Curso buscarCursoPorNome(String nomeCurso) throws IOException {
+        return CursoRepository.buscarCursoPorNome(nomeCurso);
+    }
+
     public static List<Curso> listarCursos() throws IOException {
         return CursoRepository.listarCursos();
     }
@@ -71,6 +75,14 @@ public class ArquivoUtils {
         return DisciplinaRepository.buscarDisciplinaPorId(idDisc);
     }
 
+    public static List<Disciplina> listarDisciplinasPorCurso(String idCurso) throws IOException {
+        return DisciplinaRepository.listarDisciplinasPorCurso(idCurso);
+    }  
+
+    public static List<Disciplina> listarDisciplinasPorProfessor(String idProfessor) throws IOException {
+        return DisciplinaRepository.listarDisciplinasPorProfessor(idProfessor);
+    }
+
     public static List<Disciplina> listarDisciplinas() throws IOException {
         return DisciplinaRepository.listarDisciplinas();
     }
@@ -79,7 +91,7 @@ public class ArquivoUtils {
         DisciplinaRepository.removerDisciplina(idDisciplina);
     }
 
-    // Delegação para repositórios - Matrículas
+    // Delegação para repositórios - Aluno-Disciplina
     public static void salvarAlunoDisciplina(AlunoDisciplina relacao) throws IOException {
         AlunoDisciplinaRepository.salvarAlunoDisciplina(relacao);
     }
@@ -90,6 +102,10 @@ public class ArquivoUtils {
 
     public static List<AlunoDisciplina> listarAlunosMatriculadosNaDisciplina(String idDisciplina) throws IOException {
         return AlunoDisciplinaRepository.listarAlunosMatriculadosNaDisciplina(idDisciplina);
+    }
+
+    public static List<AlunoDisciplina> listarDisciplinasMatriculadasDoAluno(String idAluno) throws IOException {
+        return AlunoDisciplinaRepository.listarDisciplinasMatriculadasDoAluno(idAluno);
     }
 
     // Delegação para validações

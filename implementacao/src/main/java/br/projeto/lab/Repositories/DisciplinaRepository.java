@@ -44,4 +44,28 @@ public class DisciplinaRepository {
     public static void removerDisciplina(String idDisciplina) throws IOException {
         FileManager.removerLinhaPorId(DISCIPLINAS_FILE, idDisciplina, 0);
     }
+
+    public static List<Disciplina> listarDisciplinasPorCurso(String idCurso) throws IOException {
+        List<Disciplina> disciplinas = new ArrayList<>();
+        List<String> linhas = FileManager.lerArquivo(DISCIPLINAS_FILE);
+        for (String linha : linhas) {
+            String[] partes = linha.split(";");
+            if (partes.length >= 6 && partes[5].equals(idCurso)) {
+                disciplinas.add(new Disciplina(partes[1], Integer.parseInt(partes[2]), Boolean.parseBoolean(partes[3]), partes[0]));
+            }
+        }
+        return disciplinas;
+    }
+
+    public static List<Disciplina> listarDisciplinasPorProfessor(String idProfessor) throws IOException {
+        List<Disciplina> disciplinas = new ArrayList<>();
+        List<String> linhas = FileManager.lerArquivo(DISCIPLINAS_FILE);
+        for (String linha : linhas) {
+            String[] partes = linha.split(";");
+            if (partes.length >= 5 && partes[4].equals(idProfessor)) {
+                disciplinas.add(new Disciplina(partes[1], Integer.parseInt(partes[2]), Boolean.parseBoolean(partes[3]), partes[0]));
+            }
+        }
+        return disciplinas;
+    }
 }

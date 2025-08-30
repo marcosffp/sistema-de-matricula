@@ -26,6 +26,17 @@ public class CursoRepository {
         return null;
     }
 
+    public static Curso buscarCursoPorNome(String nomeCurso) throws IOException {
+        List<String> linhas = FileManager.lerArquivo(CURSOS_FILE);
+        for (String linha : linhas) {
+            String[] partes = linha.split(";");
+            if (partes[1].equals(nomeCurso)) {
+                return new Curso(partes[1], Integer.parseInt(partes[2]), partes[0]);
+            }
+        }
+        return null;
+    }
+
     public static List<Curso> listarCursos() throws IOException {
         List<Curso> cursos = new ArrayList<>();
         List<String> linhas = FileManager.lerArquivo(CURSOS_FILE);

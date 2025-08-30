@@ -22,7 +22,9 @@ public class AlunoHandler {
             switch (opcao) {
                 case 1: matricularDisciplina(aluno); break;
                 case 2: cancelarMatricula(aluno); break;
-                case 3: System.out.println("Saindo..."); return;
+                case 3: visualizarDisciplinasDisponiveis(aluno); break;
+                case 4: visualizarDisciplinasMatriculadas(aluno); break;
+                case 5: System.out.println("Saindo..."); return;
                 default: System.out.println("Opção inválida!");
             }
         }
@@ -32,7 +34,9 @@ public class AlunoHandler {
         System.out.println("\nMenu Aluno:");
         System.out.println("1. Matricular em disciplina");
         System.out.println("2. Cancelar matrícula");
-        System.out.println("3. Sair");
+        System.out.println("3. Visualizar disciplinas disponiveis");
+        System.out.println("4. Visualizar disciplinas matriculadas");
+        System.out.println("5. Sair");
         System.out.print("Escolha: ");
     }
 
@@ -65,6 +69,21 @@ public class AlunoHandler {
             System.out.println("Matrícula cancelada com sucesso!");
         } else {
             System.out.println("Erro: Usuário sem permissão para cancelar matrícula.");
+        }
+    }
+
+    private void visualizarDisciplinasDisponiveis(Aluno aluno) throws Exception {
+        System.out.println("Disciplinas disponíveis:");
+        Curso curso = ArquivoUtils.buscarCursoPorNome(aluno.getNomeCurso());
+        for (Disciplina disc : ArquivoUtils.listarDisciplinasPorCurso(curso.getId())) {
+            System.out.println(disc);
+        }
+    }
+
+    private void visualizarDisciplinasMatriculadas(Aluno aluno) throws Exception {
+        System.out.println("Disciplinas matriculadas:");
+        for (AlunoDisciplina relacao : ArquivoUtils.listarDisciplinasMatriculadasDoAluno(aluno.getIdentificador())) {
+            System.out.println(ArquivoUtils.buscarDisciplinaPorId(relacao.getIdDisciplina()));
         }
     }
 }
