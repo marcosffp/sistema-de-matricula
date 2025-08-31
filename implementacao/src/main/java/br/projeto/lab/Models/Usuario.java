@@ -16,10 +16,6 @@ public abstract class Usuario {
         this.nome = nome;
     }
 
-    public boolean verificarSenha(String senha) {
-        return SenhaUtil.verificarSenha(senha, this.senhaHash);
-    }
-
     public abstract boolean temPermissao(Permissao permissao);
 
     public String getIdentificador() {
@@ -32,6 +28,10 @@ public abstract class Usuario {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getSenhaHash() {
+        return senhaHash;
     }
 
     @Override

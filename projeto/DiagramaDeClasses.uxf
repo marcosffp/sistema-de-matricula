@@ -1,0 +1,76 @@
+<diagram program="umletino" version="15.1"><zoom_level>4</zoom_level><element><id>UMLClass</id><coordinates><x>280</x><y>348</y><w>140</w><h>84</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+/Usuario/
+--
+- identificador: String
+- senhaHash: String
+- nome: String
+- email: String
+--
+/+temPermissao(permissao: Permissao): boolean/
++toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>376</x><y>264</y><w>116</w><h>40</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Professor
+--
+--
++temPermissao(permissao: Permissao): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>424</y><w>124</w><h>76</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Aluno
+--
+- nomeCurso: String
+--
++temPermissao(permissao: Permissao): boolean
++toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>452</x><y>312</y><w>104</w><h>76</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Disciplina
+--
+- id: String
+- nome: String
+- optativa: boolean
+- alunos: List&lt;Aluno&gt;
+- periodo: int
+--
++getAlunosMatriculados(): List&lt;Aluno&gt;
++incluirProfessor(professor: Professor): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>384</y><w>32</w><h>48</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=n
+&lt;&lt;possui&gt;&gt;</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>264</y><w>120</w><h>40</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Secretario
+--
+--
++temPermissao(permissao: Permissao): boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>460</y><w>140</w><h>68</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Permissao
+--
++ GERENCIAR_CURRICULO,
++ GERENCIAR_DISCIPLINAS,
++ GERENCIAR_PROFESSORES,
++ GERENCIAR_ALUNOS,
++ DEFINIR_PERIODO_MATRICULA,
++ MATRICULAR_DISCIPLINA,
++ CANCELAR_MATRICULA,
++ VISUALIZAR_MATRICULAS
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>300</y><w>96</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;80;220;80;220;10</additional_attributes></element><element><id>Relation</id><coordinates><x>276</x><y>300</y><w>80</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>180;120;180;80;10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>408</x><y>428</y><w>40</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60;80;60</additional_attributes></element><element><id>Relation</id><coordinates><x>488</x><y>268</y><w>44</w><h>52</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+&lt;&lt;leciona&gt;&gt;</panel_attributes><additional_attributes>40;110;40;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>96</x><y>312</y><w>148</w><h>44</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Curso
+--
+- id: String
+- nome: String
+- creditos: int
+--
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>156</x><y>272</y><w>68</w><h>48</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>10;100;10;20;150;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>428</y><w>24</w><h>40</h></coordinates><panel_attributes>lt=&lt;..
+&lt;&lt;usa&gt;&gt;</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>240</y><w>400</w><h>80</h></coordinates><panel_attributes>lt=&lt;-
+m1=n
+m2=1
+&lt;&lt;possui&gt;&gt;</panel_attributes><additional_attributes>970;180;970;20;10;20;10;180</additional_attributes></element><element><id>Relation</id><coordinates><x>272</x><y>248</y><w>252</w><h>72</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>610;160;610;20;10;20;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>404</y><w>80</w><h>12</h></coordinates><panel_attributes>lt=..</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>572</x><y>392</y><w>64</w><h>28</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+AlunoDisciplina
+--
+- creditosObtidos: int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>332</x><y>264</y><w>52</w><h>16</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>248</x><y>300</y><w>220</w><h>244</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>530;500;530;590;20;590;20;10</additional_attributes></element></diagram>
