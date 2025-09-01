@@ -1,69 +1,44 @@
-<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><element><id>UMLClass</id><coordinates><x>156</x><y>419</y><w>210</w><h>126</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
-Usuario
+<diagram program="umletino" version="15.1"><zoom_level>4</zoom_level><element><id>UMLClass</id><coordinates><x>280</x><y>348</y><w>140</w><h>84</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+/Usuario/
 --
--identificador: String
--senhaHash: String
--nome: String
--email: String
--ativo: boolean
+- identificador: String
+- senhaHash: String
+- nome: String
+- email: String
 --
-_+autenticado(sessionToken: String): boolean_
-_+logout(sessionToken: String): boolean_
-_+logout(sessionToken: String): boolean_
 /+temPermissao(permissao: Permissao): boolean/
-+ realizarLogin(identificador: String, senha: String): String
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>443</y><w>60</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>324</x><y>47</y><w>174</w><h>96</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>376</x><y>264</y><w>116</w><h>40</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Professor
 --
--disciplinasLecionadas:List&lt;Disciplina&gt;
 --
 +temPermissao(permissao: Permissao): boolean
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>395</y><w>186</w><h>114</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>424</y><w>124</w><h>76</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Aluno
 --
--curso: String
--codAluno : String
--matricua:Matricula
+- nomeCurso: String
 --
-+podeMatricular(): boolean
-+cancelarMatricula(): void
 +temPermissao(permissao: Permissao): boolean
-+fazerMatricula(disciplinas: List&lt;Disciplina&gt;): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>654</x><y>401</y><w>168</w><h>114</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
-Matricula
---
-- id: Long
-- data: LocalDate
-- status: String
-- aluno: Aluno
-- periodo: int
-- limite: int
-- disciplinas : List&lt;Disciplina&gt;
---
-+adicionarDisciplina(disciplina: Disciplina): void
-+removerDisciplina(disciplina: Disciplina): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>438</x><y>203</y><w>156</w><h>114</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++toString(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>452</x><y>312</y><w>104</w><h>76</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Disciplina
 --
--id: Long
--nome: String
--optativa: boolean
--alunos: List&lt;Aluno&gt;
+- id: String
+- nome: String
+- optativa: boolean
+- alunos: List&lt;Aluno&gt;
+- periodo: int
 --
 +getAlunosMatriculados(): List&lt;Aluno&gt;
-+adicionarAluno(aluno: Aluno): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>588</x><y>455</y><w>78</w><h>24</h></coordinates><panel_attributes>lt=&lt;-
-m1= 1
-m2= 1</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>588</x><y>311</y><w>78</w><h>102</h></coordinates><panel_attributes>lt=&lt;-
-m1=*</panel_attributes><additional_attributes>10;10;110;150</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>311</y><w>24</w><h>96</h></coordinates><panel_attributes>lt=&lt;-
-m1=*</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>84</x><y>47</y><w>180</w><h>96</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++incluirProfessor(professor: Professor): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>384</y><w>32</w><h>48</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=n
+&lt;&lt;possui&gt;&gt;</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>264</y><w>120</w><h>40</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Secretario
 --
-- cursosGerenciados: List&lt;String&gt;
 --
-+gerarCurriculoSemestral()
-+temPermissao(permissao: Permissao): boolean
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>275</y><w>84</w><h>24</h></coordinates><panel_attributes>m1=1
-m2=n</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>197</y><w>210</w><h>102</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
++temPermissao(permissao: Permissao): boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>460</y><w>140</w><h>68</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
 Permissao
 --
 + GERENCIAR_CURRICULO,
@@ -76,12 +51,26 @@ Permissao
 + VISUALIZAR_MATRICULAS
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>258</x><y>89</y><w>78</w><h>24</h></coordinates><panel_attributes>m1=1
-m2=n</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>114</x><y>137</y><w>396</w><h>462</h></coordinates><panel_attributes>m1=1
-m2=n</panel_attributes><additional_attributes>10;10;10;750;630;750;630;620</additional_attributes></element><element><id>UMLClass</id><coordinates><x>198</x><y>227</y><w>174</w><h>96</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
-Funcionario
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>300</y><w>96</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;80;220;80;220;10</additional_attributes></element><element><id>Relation</id><coordinates><x>276</x><y>300</y><w>80</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>180;120;180;80;10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>408</x><y>428</y><w>40</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60;80;60</additional_attributes></element><element><id>Relation</id><coordinates><x>488</x><y>268</y><w>44</w><h>52</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+&lt;&lt;leciona&gt;&gt;</panel_attributes><additional_attributes>40;110;40;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>96</x><y>312</y><w>148</w><h>44</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Curso
 --
--departamento: String
+- id: String
+- nome: String
+- creditos: int
 --
-+getDepartamento()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>276</x><y>137</y><w>144</w><h>102</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;150;10;80;220;80;220;10</additional_attributes></element><element><id>Relation</id><coordinates><x>174</x><y>137</y><w>120</w><h>102</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>180;150;180;80;10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>276</x><y>317</y><w>18</w><h>114</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;170;10;10</additional_attributes></element></diagram>
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>156</x><y>272</y><w>68</w><h>48</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>10;100;10;20;150;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>428</y><w>24</w><h>40</h></coordinates><panel_attributes>lt=&lt;..
+&lt;&lt;usa&gt;&gt;</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>240</y><w>400</w><h>80</h></coordinates><panel_attributes>lt=&lt;-
+m1=n
+m2=1
+&lt;&lt;possui&gt;&gt;</panel_attributes><additional_attributes>970;180;970;20;10;20;10;180</additional_attributes></element><element><id>Relation</id><coordinates><x>272</x><y>248</y><w>252</w><h>72</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>610;160;610;20;10;20;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>404</y><w>80</w><h>12</h></coordinates><panel_attributes>lt=..</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>572</x><y>392</y><w>64</w><h>28</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+AlunoDisciplina
+--
+- creditosObtidos: int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>332</x><y>264</y><w>52</w><h>16</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>248</x><y>300</y><w>220</w><h>244</h></coordinates><panel_attributes>lt=&lt;-
+&lt;&lt;gerencia&gt;&gt;</panel_attributes><additional_attributes>530;500;530;590;20;590;20;10</additional_attributes></element></diagram>

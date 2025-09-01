@@ -38,10 +38,10 @@
 
 ### Diagrama
 
-![UCM](./projeto/DiagramaCasosDeUso.jpg)
+![UCM](./projeto/DiagramaDeCasosDeUso.jpg)
 
 ## Diagrama de Classes
 
 ### Diagrama
 
-![Diagrama UML](./projeto/DiagramaUML.jpg)
+![Diagrama UML](./projeto/DiagramaDeClasses.png)
